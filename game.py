@@ -2,6 +2,7 @@ import pyglet
 import pymunk
 import esper as ecs
 from src.ecs.entity_factory import create_player
+import src.level_manager as level_manager
 
 from src.ecs.systems.char_render_system import CharRenderSystem
 from src.ecs.systems.character_control_system import CharacterControlSystem
@@ -33,8 +34,8 @@ def on_draw(dt):
     window.clear()
     if game:
         game.ecs_world.process(dt, game)
-        #print_options = pymunk.SpaceDebugDrawOptions()
-        #space.debug_draw(print_options)
+        print_options = pymunk.SpaceDebugDrawOptions()
+        space.debug_draw(print_options)
         space.step(dt)
 
 
@@ -46,10 +47,11 @@ if __name__ == '__main__':
 
     ecs_world = ecs.World()
     space = pymunk.Space()
-    #space.gravity = (0, -381)
+    space.gravity = (0, -981)
     game = GameInstance()
 
     init_ecs_world(game)
+    level_manager.load_level(game)
 
     pyglet.clock.schedule_interval(on_draw, FPS_INTERVAL)
 
