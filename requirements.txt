@@ -21,7 +21,6 @@ esper==1.5
 fedora-third-party==0.8
 fros==1.1
 gpg==1.15.1
-gssapi==1.6.14
 humanize==0.5.1
 idna==3.2
 koji==1.26.1
@@ -71,7 +70,6 @@ requests-file==1.5.1
 requests-ftp==0.3.1
 requests-gssapi==1.2.3
 rpm==4.17.0
-rpmautospec==0.2.5
 selinux==3.3
 sepolicy==3.3
 setools==4.4.0
