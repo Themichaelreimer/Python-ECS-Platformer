@@ -5,7 +5,7 @@ from src.ecs.components.common_components import Transform
 from src.ecs.components.character_controller import CharacterController
 from pyglet.window import key
 
-CHARACTER_SPEED  = 20
+CHARACTER_SPEED  = 200
 CHARACTER_JUMP_SPEED = 50
 
 class CharacterControlSystem(ecs.Processor):

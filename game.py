@@ -33,10 +33,10 @@ def init_ecs_world(game:GameInstance):
 def on_draw(dt):
     window.clear()
     if game:
-        game.ecs_world.process(dt, game)
-        print_options = pymunk.SpaceDebugDrawOptions()
-        space.debug_draw(print_options)
-        space.step(dt)
+        game.ecs_world.process(FPS_INTERVAL, game)
+        #print_options = pymunk.SpaceDebugDrawOptions()
+        #space.debug_draw(print_options)
+        space.step(FPS_INTERVAL)
 
 
 if __name__ == '__main__':
