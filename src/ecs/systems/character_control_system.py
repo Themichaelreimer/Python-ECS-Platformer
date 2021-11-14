@@ -5,13 +5,15 @@ from src.ecs.components.common_components import Transform
 from src.ecs.components.character_controller import CharacterController
 from pyglet.window import key
 
-CHARACTER_SPEED  = 200
+CHARACTER_SPEED  = 1000
 CHARACTER_JUMP_SPEED = 50
 
 class CharacterControlSystem(ecs.Processor):
     def process(self, dt, game):
         keys = game.keys
         for ent, (controller, rb) in self.world.get_components(CharacterController, RigidBody):
+            rb.body.angle = 0
+
             if keys[controller.left]:
                 rb.body.apply_force_at_local_point((-CHARACTER_SPEED,0))
             if keys[controller.right]:

@@ -1,4 +1,5 @@
 import pyglet
+from pyglet.gl import *
 import pymunk
 import esper as ecs
 from src.ecs.entity_factory import create_player
@@ -23,6 +24,7 @@ class GameInstance:
         self.keys = keys
         self.ecs_world = ecs_world
         self.space = space
+        self.platforms = []
 
 def init_ecs_world(game:GameInstance):
     world = game.ecs_world
@@ -32,11 +34,23 @@ def init_ecs_world(game:GameInstance):
 
 def on_draw(dt):
     window.clear()
+    batch = pyglet.graphics.Batch()
     if game:
         game.ecs_world.process(FPS_INTERVAL, game)
         #print_options = pymunk.SpaceDebugDrawOptions()
         #space.debug_draw(print_options)
         space.step(FPS_INTERVAL)
+
+        glBegin(GL_LINES)
+        glColor3f(1.0,1.0,1.0)
+        for platform in game.platforms:
+            glVertex2f(platform.p1[0],platform.p1[1])
+            glVertex2f(platform.p2[0],platform.p2[1])
+        glEnd()
+            #print(f"DRAW PLATFORM: [({platform.p1}) to ({platform.p2})]")
+            #pyglet.shapes.Line(platform.p1[0], platform.p1[1], platform.p2[0], platform.p2[1], 4, color=(255,0,0), batch=batch)
+    batch.draw()
+    
 
 
 if __name__ == '__main__':

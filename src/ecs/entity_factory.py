@@ -8,5 +8,5 @@ def create_player(game:'GameInstance'):
     player = world.create_entity()
     world.add_component(player, RigidBody(game.space, (50,50), 24))
     world.add_component(player, CharacterController())
-    world.add_component(player, Char(char="@", size=24))
+    world.add_component(player, Char(char="@", size=16))
     return player
