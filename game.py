@@ -7,7 +7,7 @@ import src.level_manager as level_manager
 
 from src.ecs.systems.char_render_system import CharRenderSystem
 from src.ecs.systems.character_control_system import CharacterControlSystem
-
+from src.ecs.systems.rigidbody_render_system import RigidBodyRenderSystem
 
 FPS_INTERVAL = 1/60
 window = pyglet.window.Window(800,600)
@@ -30,6 +30,7 @@ def init_ecs_world(game:GameInstance):
     world = game.ecs_world
     world.add_processor(CharacterControlSystem(), 0)
     world.add_processor(CharRenderSystem(), 0)
+    world.add_processor(RigidBodyRenderSystem(), 0)
     create_player(game)
 
 def on_draw(dt):
@@ -48,7 +49,7 @@ def on_draw(dt):
             glVertex2f(platform.p2[0],platform.p2[1])
         glEnd()
             #print(f"DRAW PLATFORM: [({platform.p1}) to ({platform.p2})]")
-            #pyglet.shapes.Line(platform.p1[0], platform.p1[1], platform.p2[0], platform.p2[1], 4, color=(255,0,0), batch=batch)
+            #pyglet.shapes.Line(platform.p1[0], platform.p1[1], platform.p2[0], platform.p2[1], 4, color=(1,0,0), batch=batch)
     batch.draw()
     
 

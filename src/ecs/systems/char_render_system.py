@@ -12,15 +12,15 @@ class CharRenderSystem(ecs.Processor):
         for ent, (rigid_body, ch) in self.world.get_components(RigidBody, Char):
             if ent in self.labels:
                 #print(f"{rigid_body.body.position.x},{rigid_body.body.position.y}")
-                self.labels[ent].x = rigid_body.body.position.x
-                self.labels[ent].y = rigid_body.body.position.y
+                self.labels[ent].x = rigid_body.body.position.x - ch.size/2
+                self.labels[ent].y = rigid_body.body.position.y - ch.size/2
                 self.labels[ent].font_size = ch.size
             else:
                 self.labels[ent] = pyglet.text.Label(
                     ch.char,
                     font_size=ch.size,
-                    x=rigid_body.body.position.x,
-                    y=rigid_body.body.position.y, 
+                    x=rigid_body.body.position.x- ch.size/2,
+                    y=rigid_body.body.position.y- ch.size/2, 
                     )
             self.labels[ent].draw()
 
